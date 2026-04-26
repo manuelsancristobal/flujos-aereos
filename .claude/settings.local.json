@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:sites.google.com)",
+      "WebFetch(domain:manuelsancristobal.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(find /c/Users/salom/OneDrive/Documentos/ArcLayer -type f \\\\\\(-name *.csv -o -name *.json -o -name *.html -o -name *.js \\\\\\))",
+      "WebFetch(domain:www.subturismo.gob.cl)",
+      "Bash(pip install:*)",
+      "Bash(python -c \":*)",
+      "Bash(python -m pip install pymupdf)",
+      "Bash(python:*)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\salom\\\\OneDrive\\\\Documentos\\\\tourism-investment-atlas\\\\data\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\salom\\\\OneDrive\\\\Documentos\\\\tourism-investment-atlas\\\\modules\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\salom\\\\OneDrive\\\\Documentos\\\\tourism-investment-atlas\\\\.streamlit\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\salom\\\\OneDrive\\\\Documentos\\\\tourism-investment-atlas\\\\notebooks\")",
+      "Bash(cp:*)",
+      "Bash(curl -s http://localhost:8501)",
+      "Bash(pkill -f \"streamlit run app.py\")",
+      "Bash(streamlit run:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(find C:/Users/salom/OneDrive/Documentos -name jac_data* -type f)"
+    ]
+  }
+}

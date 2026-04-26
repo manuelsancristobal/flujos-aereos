@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcLayer — Flujos Aéreos Chile</title>
+    <!-- Deck.gl y MapLibre -->
+    <script src="https://unpkg.com/deck.gl@^9.0.0/dist.min.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@^3.0.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^3.0.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="map"></div>
+        
+        <div class="controls">
+            <h1>Flujos Aéreos Internacionales</h1>
+            
+            <div class="control-group">
+                <label>Tipo de Tráfico</label>
+                <div class="toggle-group" id="metric-toggle">
+                    <button class="active" data-value="pasajeros">Pasajeros</button>
+                    <button data-value="carga">Carga</button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label>Perspectiva</label>
+                <div class="toggle-group" id="perspective-toggle">
+                    <button class="active" data-value="emisivo">Emisivo</button>
+                    <button data-value="receptivo">Receptivo</button>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label>Año: <span id="year-label">2024</span></label>
+                <input type="range" id="year-slider" min="2022" max="2024" value="2024" step="1">
+            </div>
+
+            <div class="stats">
+                <p>Rutas activas: <span id="route-count">-</span></p>
+                <p>Total: <span id="total-value">-</span></p>
+            </div>
+        </div>
+        
+        <div id="tooltip"></div>
+    </div>
+
+    <script src="assets/js/map.js"></script>
+</body>
+</html>
