@@ -4,13 +4,12 @@ Script de preparacion de datos para Tourism Investment Atlas.
 Lee JAC raw local + descarga aeropuertos y genera CSVs multi-año.
 """
 
-import pandas as pd
-import numpy as np
-import requests
-import io
-from pathlib import Path
 import shutil
 import warnings
+from pathlib import Path
+
+import pandas as pd
+
 warnings.filterwarnings('ignore')
 
 DATA_DIR = Path(__file__).parent / 'data'

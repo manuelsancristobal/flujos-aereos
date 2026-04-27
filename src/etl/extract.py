@@ -5,9 +5,17 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.config import CSV_LOCAL, DATA_DIR, EXPECTED_COLUMNS, GSHEET_URL
+from src.config import (
+    AEROPUERTOS_CHILE,
+    AEROPUERTOS_GLOBAL,
+    CSV_LOCAL,
+    DATA_DIR,
+    EXPECTED_COLUMNS,
+    GSHEET_URL,
+)
 
 logger = logging.getLogger(__name__)
+
 
 def download_csv(url: str = GSHEET_URL, dest: Path = CSV_LOCAL) -> Path:
     """Descarga CSV desde Google Sheets. Retorna path al archivo."""
@@ -140,6 +148,6 @@ def _extract_from_fallbacks() -> pd.DataFrame:
 
 def load_airports() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Carga los archivos de aeropuertos."""
-    chile = pd.read_csv(DATA_DIR / "aeropuertos_chile.csv")
-    global_airports = pd.read_csv(DATA_DIR / "aeropuertos_global.csv")
+    chile = pd.read_csv(AEROPUERTOS_CHILE)
+    global_airports = pd.read_csv(AEROPUERTOS_GLOBAL)
     return chile, global_airports

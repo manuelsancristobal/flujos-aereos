@@ -1,11 +1,14 @@
 """Constantes, rutas y configuración del proyecto flujos-aereos."""
 
+import os
 from pathlib import Path
 
 # ── Rutas ──────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
-DATA_RAW = PROJECT_ROOT / "data" / "raw"
+DATA_RAW = DATA_DIR / "raw"
+DATA_EXTERNAL = DATA_DIR / "external"
+DATA_PROCESSED = DATA_DIR / "processed"
 CSV_LOCAL = DATA_RAW / "jac_data.csv"
 VIZ_DIR = PROJECT_ROOT / "viz"
 ASSETS_DIR = VIZ_DIR / "assets"
@@ -43,19 +46,25 @@ EXPECTED_COLUMNS = [
     "Distancia",
 ]
 
-# Ruta al repo Jekyll local (basada en la estructura detectada)
-JEKYLL_REPO = PROJECT_ROOT.parent / "manuelsancristobal.github.io"
-JEKYLL_BASE = JEKYLL_REPO / "proyectos" / "flujos-aereos"
-JEKYLL_DATA_DIR = JEKYLL_BASE / "assets" / "data"
-JEKYLL_CSS_DIR = JEKYLL_BASE / "assets" / "css"
-JEKYLL_JS_DIR = JEKYLL_BASE / "assets" / "js"
-JEKYLL_PAGE = JEKYLL_BASE / "viz.html"
-JEKYLL_PROJECTS_DIR = JEKYLL_REPO / "_projects"
+# ── Jekyll ─────────────────────────────────────────────
+_jekyll_env = os.getenv("JEKYLL_REPO")
+JEKYLL_REPO: Path | None = Path(_jekyll_env) if _jekyll_env else None
+JEKYLL_BASE = (JEKYLL_REPO / "proyectos" / "flujos-aereos") if JEKYLL_REPO else None
+JEKYLL_DATA_DIR = (JEKYLL_BASE / "assets" / "data") if JEKYLL_BASE else None
+JEKYLL_CSS_DIR = (JEKYLL_BASE / "assets" / "css") if JEKYLL_BASE else None
+JEKYLL_JS_DIR = (JEKYLL_BASE / "assets" / "js") if JEKYLL_BASE else None
+JEKYLL_PAGE = (JEKYLL_BASE / "viz.html") if JEKYLL_BASE else None
+JEKYLL_PROJECTS_DIR = (JEKYLL_REPO / "_projects") if JEKYLL_REPO else None
 JEKYLL_PROJECT_MD = PROJECT_ROOT / "jekyll" / "flujos-aereos.md" # Markdown del proyecto
 
 # Archivos de datos procesados (salida del ETL)
-AEROPUERTOS_CHILE = DATA_DIR / "aeropuertos_chile.csv"
-AEROPUERTOS_GLOBAL = DATA_DIR / "aeropuertos_global.csv"
+AEROPUERTOS_CHILE = DATA_EXTERNAL / "aeropuertos_chile.csv"
+AEROPUERTOS_GLOBAL = DATA_EXTERNAL / "aeropuertos_global.csv"
+CLUSTERS_TURISTICOS = DATA_EXTERNAL / "clusters_turisticos.csv"
+FLUJOS_INT_CONECTIVIDAD = DATA_EXTERNAL / "flujos_int_conectividad.csv"
+FLUJOS_INT_RECEPTIVO = DATA_EXTERNAL / "flujos_int_receptivo.csv"
+FLUJOS_NACIONALES = DATA_EXTERNAL / "flujos_nacionales.csv"
+HISTORICO_PASAJEROS = DATA_EXTERNAL / "historico_pasajeros.csv"
 
 # ── Configuraciones de la Visualización ────────────────
 PERSPECTIVAS = ["emisivo", "receptivo"]
