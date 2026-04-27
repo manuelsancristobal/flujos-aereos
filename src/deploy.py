@@ -21,6 +21,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 def deploy():
     """Copia archivos al repo Jekyll. El push es manual."""
     if not JEKYLL_REPO.exists():
@@ -68,6 +69,7 @@ def deploy():
         logger.info(f"Sincronizado proyecto .md → {JEKYLL_PROJECTS_DIR}")
 
     logger.info("Deploy completado localmente. Recuerda hacer git push en el repo de tu portafolio.")
+
 
 if __name__ == "__main__":
     deploy()

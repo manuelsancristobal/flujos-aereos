@@ -13,6 +13,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 def run():
     """Ejecuta el pipeline completo para todas las combinaciones."""
     logger.info("Iniciando ETL de ArcLayer...")
@@ -37,6 +38,7 @@ def run():
                 logger.error(f"Error procesando {combo}: {e}")
 
     logger.info(f"ETL finalizado. {len(generated)} archivos generados.")
+
 
 if __name__ == "__main__":
     run()

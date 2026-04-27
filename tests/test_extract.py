@@ -17,6 +17,7 @@ def test_extract_jac_data_structure():
     for col in expected_cols:
         assert col in df.columns, f"Falta la columna crítica: {col}"
 
+
 def test_load_airports():
     """Verifica la carga de catálogos de aeropuertos."""
     chile, global_airports = load_airports()

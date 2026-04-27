@@ -30,7 +30,7 @@ Homepage = "https://github.com/manuelsancristobal/arclayer"
 Repository = "https://github.com/manuelsancristobal/arclayer"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+include = ["src*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

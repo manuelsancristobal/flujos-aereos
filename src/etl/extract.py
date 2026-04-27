@@ -35,12 +35,14 @@ def download_csv(url: str = GSHEET_URL, dest: Path = CSV_LOCAL) -> Path:
             raise FileNotFoundError(f"No hay CSV local en {dest} ni fallback disponible.") from exc
     return dest
 
+
 def load_raw(path: Path = CSV_LOCAL) -> pd.DataFrame:
     """Lee CSV crudo y valida columnas esperadas."""
     logger.info("Leyendo %s ...", path)
     df = pd.read_csv(path, low_memory=False, dtype={"PASAJEROS": str})
     _validate_columns(df)
     return df
+
 
 def _validate_columns(df: pd.DataFrame) -> None:
     """Verifica que existan las columnas esperadas."""
@@ -53,12 +55,14 @@ def _validate_columns(df: pd.DataFrame) -> None:
     if missing:
         raise ValueError(f"Columnas faltantes en los datos: {missing}")
 
+
 def _find_year_column(df: pd.DataFrame) -> str:
     """Encuentra la columna de año (puede tener encoding distinto de ñ)."""
     for col in df.columns:
         if col.lower().startswith("a") and col.lower().endswith("o") and len(col) <= 4:
             return col
     raise ValueError("No se encontró columna de año (Año/Ano)")
+
 
 def _parse_chilean_int(val) -> int:
     """Parsea número en formato chileno (punto como separador de miles)."""
@@ -69,6 +73,7 @@ def _parse_chilean_int(val) -> int:
         return int(s.replace(".", ""))
     except ValueError:
         return 0
+
 
 def normalize(df: pd.DataFrame) -> pd.DataFrame:
     """Normaliza columnas y tipos del DataFrame crudo."""
@@ -112,6 +117,7 @@ def normalize(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+
 def extract_jac_data(use_remote: bool = True) -> pd.DataFrame:
     """Pipeline completo de extracción: descarga (opcional) + lectura + normalización."""
     try:
@@ -125,6 +131,7 @@ def extract_jac_data(use_remote: bool = True) -> pd.DataFrame:
         # Intentar fallback de emergencia si falla todo
         return _extract_from_fallbacks()
 
+
 def _extract_from_fallbacks() -> pd.DataFrame:
     """Crea un DataFrame compatible a partir de los CSVs procesados existentes."""
     f_conect = DATA_DIR / "flujos_int_conectividad.csv"
@@ -137,14 +144,15 @@ def _extract_from_fallbacks() -> pd.DataFrame:
     df_conect = pd.read_csv(f_conect)
 
     # Reconstrucción simplificada
-    chile_airports = ['SCL', 'PUQ', 'PMC', 'CCP', 'ARI', 'LSC', 'IPC', 'ANF', 'CJC']
-    df_conect['OPER_2'] = df_conect['ORIG_1'].apply(lambda x: 'SALEN' if x in chile_airports else 'LLEGAN')
-    df_conect['NAC'] = 'INTERNACIONAL'
-    df_conect['PASAJEROS_TOTAL'] = df_conect['Pasajeros']
+    chile_airports = ["SCL", "PUQ", "PMC", "CCP", "ARI", "LSC", "IPC", "ANF", "CJC"]
+    df_conect["OPER_2"] = df_conect["ORIG_1"].apply(lambda x: "SALEN" if x in chile_airports else "LLEGAN")
+    df_conect["NAC"] = "INTERNACIONAL"
+    df_conect["PASAJEROS_TOTAL"] = df_conect["Pasajeros"]
     np.random.seed(42)
-    df_conect['CARGA_TOTAL'] = df_conect['PASAJEROS_TOTAL'] * 0.05 * np.random.uniform(0.5, 1.5, len(df_conect))
+    df_conect["CARGA_TOTAL"] = df_conect["PASAJEROS_TOTAL"] * 0.05 * np.random.uniform(0.5, 1.5, len(df_conect))
 
     return df_conect
+
 
 def load_airports() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Carga los archivos de aeropuertos."""

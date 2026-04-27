@@ -55,7 +55,7 @@ JEKYLL_CSS_DIR = (JEKYLL_BASE / "assets" / "css") if JEKYLL_BASE else None
 JEKYLL_JS_DIR = (JEKYLL_BASE / "assets" / "js") if JEKYLL_BASE else None
 JEKYLL_PAGE = (JEKYLL_BASE / "viz.html") if JEKYLL_BASE else None
 JEKYLL_PROJECTS_DIR = (JEKYLL_REPO / "_projects") if JEKYLL_REPO else None
-JEKYLL_PROJECT_MD = PROJECT_ROOT / "jekyll" / "flujos-aereos.md" # Markdown del proyecto
+JEKYLL_PROJECT_MD = PROJECT_ROOT / "jekyll" / "flujos-aereos.md"  # Markdown del proyecto
 
 # Archivos de datos procesados (salida del ETL)
 AEROPUERTOS_CHILE = DATA_EXTERNAL / "aeropuertos_chile.csv"
@@ -76,5 +76,5 @@ COL_ORIGEN = "ORIG_1"
 COL_DESTINO = "DEST_1"
 COL_PASAJEROS = "PASAJEROS_TOTAL"
 COL_CARGA = "CARGA_TOTAL"
-COL_TIPO_VUELO = "NAC" # NACIONAL / INTERNACIONAL
-COL_SENTIDO = "OPER_2" # LLEGAN / SALEN
+COL_TIPO_VUELO = "NAC"  # NACIONAL / INTERNACIONAL
+COL_SENTIDO = "OPER_2"  # LLEGAN / SALEN
