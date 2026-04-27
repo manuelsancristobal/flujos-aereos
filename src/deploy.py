@@ -2,15 +2,16 @@
 
 import logging
 import shutil
+
 from src.config import (
-    PROCESSED_DATA_DIR,
-    JEKYLL_DATA_DIR,
     JEKYLL_CSS_DIR,
+    JEKYLL_DATA_DIR,
     JEKYLL_JS_DIR,
     JEKYLL_PAGE,
     JEKYLL_PROJECT_MD,
     JEKYLL_PROJECTS_DIR,
     JEKYLL_REPO,
+    PROCESSED_DATA_DIR,
     VIZ_DIR,
 )
 
@@ -54,7 +55,7 @@ def deploy():
     if html_src.exists():
         JEKYLL_PAGE.parent.mkdir(parents=True, exist_ok=True)
         # IMPORTANTE: En el HTML copiado, las rutas de assets deben ser relativas al nuevo destino
-        # Si JEKYLL_PAGE es /proyectos/arclayer/viz.html, 
+        # Si JEKYLL_PAGE es /proyectos/arclayer/viz.html,
         # y assets están en /proyectos/arclayer/assets/js/map.js
         # Las rutas en el HTML (assets/js/map.js) ya son relativas y funcionan si se mantiene la estructura.
         shutil.copy2(html_src, JEKYLL_PAGE)

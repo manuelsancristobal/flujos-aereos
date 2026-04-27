@@ -5,10 +5,43 @@ from pathlib import Path
 # ── Rutas ──────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
-DATA_RAW = PROJECT_ROOT / "data" / "raw" # Para consistencia con barchart-race si se decide usar jac_data.csv directo
+DATA_RAW = PROJECT_ROOT / "data" / "raw"
+CSV_LOCAL = DATA_RAW / "jac_data.csv"
 VIZ_DIR = PROJECT_ROOT / "viz"
 ASSETS_DIR = VIZ_DIR / "assets"
 PROCESSED_DATA_DIR = ASSETS_DIR / "data"
+
+# ── Google Sheets ──────────────────────────────────────
+GSHEET_URL = "https://docs.google.com/spreadsheets/d/1U3JiVuxjDcvaIoLw9XkW3JKfuh-8_3Pc/export?format=csv&gid=499690993"
+
+# ── Columnas esperadas en la fuente ────────────────────
+EXPECTED_COLUMNS = [
+    "Año",
+    "Mes",
+    "Cod_Operador",
+    "Operador",
+    "Grupo",
+    "ORIG_1",
+    "DEST_1",
+    "ORIG_1_N",
+    "DEST_1_N",
+    "ORIG_1_PAIS",
+    "DEST_1_PAIS",
+    "ORIG_2",
+    "DEST_2",
+    "ORIG_2_N",
+    "DEST_2_N",
+    "ORIG_2_PAIS",
+    "DEST_2_PAIS",
+    "OPER_2",
+    "NAC",
+    "PAX_LIB",
+    "PASAJEROS",
+    "CAR_LIB",
+    "CARGA (Ton)",
+    "CORREO",
+    "Distancia",
+]
 
 # Ruta al repo Jekyll local (basada en la estructura detectada)
 JEKYLL_REPO = PROJECT_ROOT.parent / "manuelsancristobal.github.io"
