@@ -1,7 +1,10 @@
 # Flujos Aéreos - Deck.gl Arc Layer Visualization
 
+## Contexto
+Este proyecto nació el año 2024, por quizás las razones equivocadas, ya que solo me gustó mucho lo que vi en una galería de Pydeck, por lo que intenté modificarla con datos de la JAC y fue hermoso.
+
 ## Impacto y Valor del Proyecto
-Este proyecto visualiza la conectividad aérea de Chile mediante mapas de arcos (Deck.gl), permitiendo un análisis exploratorio de los flujos de pasajeros y carga. Al cruzar los datos de tráfico de la JAC con la ubicación de clusters turísticos, la herramienta identifica nodos críticos de infraestructura y oportunidades de inversión en zonas con alta demanda aérea pero sub-representación en servicios turísticos locales. Es una solución avanzada de Business Intelligence geoespacial para el sector aeronáutico y turístico.
+Este proyecto muestra la conectividad aérea de Chile mediante mapas de arcos (Deck.gl), permitiendo un análisis exploratorio de los flujos de pasajeros y carga.
 
 ## Stack Tecnológico
 - **Lenguaje**: Python 3.10+

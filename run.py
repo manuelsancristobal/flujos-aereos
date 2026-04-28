@@ -7,6 +7,7 @@ Uso:
     python run.py ver      # Abre la visualización en el navegador
     python run.py test     # Ejecuta tests + linting
 """
+
 from __future__ import annotations
 
 import os
@@ -19,28 +20,36 @@ _PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # --- Colores ANSI ---
 
+
 def _supports_color() -> bool:
     return hasattr(sys.stdout, "isatty") and sys.stdout.isatty()
 
+
 _COLOR = _supports_color()
+
 
 def _green(text: str) -> str:
     return f"\033[92m{text}\033[0m" if _COLOR else text
 
+
 def _cyan(text: str) -> str:
     return f"\033[96m{text}\033[0m" if _COLOR else text
+
 
 def _red(text: str) -> str:
     return f"\033[91m{text}\033[0m" if _COLOR else text
 
+
 def _bold(text: str) -> str:
     return f"\033[1m{text}\033[0m" if _COLOR else text
+
 
 def _yellow(text: str) -> str:
     return f"\033[93m{text}\033[0m" if _COLOR else text
 
 
 # --- Helpers ----------------------------------------------------------
+
 
 def _run(cmd: list[str], label: str) -> bool:
     """Ejecuta un comando y retorna True si fue exitoso."""
@@ -57,6 +66,7 @@ def _run(cmd: list[str], label: str) -> bool:
 
 
 # --- Comandos ---------------------------------------------------------
+
 
 def cmd_etl() -> bool:
     return _run([sys.executable, "-m", "src.main"], "ETL - Generando JSONs para el Mapa")
@@ -99,14 +109,14 @@ def cmd_deploy() -> bool:
 
 def cmd_help() -> None:
     print(f"""
-{_bold('ArcLayer - Comandos disponibles')}
+{_bold("ArcLayer - Comandos disponibles")}
 
-  python run.py {_green('etl')}      Ejecuta el ETL (genera JSONs en viz/assets/data/)
-  python run.py {_green('ver')}      Abre la visualización en el navegador
-  python run.py {_green('test')}     Ejecuta tests (pytest) + linting (ruff)
-  python run.py {_green('deploy')}   Copia archivos al repo Jekyll
+  python run.py {_green("etl")}      Ejecuta el ETL (genera JSONs en viz/assets/data/)
+  python run.py {_green("ver")}      Abre la visualización en el navegador
+  python run.py {_green("test")}     Ejecuta tests (pytest) + linting (ruff)
+  python run.py {_green("deploy")}   Copia archivos al repo Jekyll
 
-{_yellow('Ejemplo:')} python run.py etl
+{_yellow("Ejemplo:")} python run.py etl
 """)
 
 
