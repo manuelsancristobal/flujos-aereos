@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "arclayer"
 version = "1.0.0"
-description = "Exploratory analysis of Chilean air traffic flows and tourism investment opportunities using Deck.gl visualizations"
+description = "Análisis exploratorio de flujos de tráfico aéreo chileno y oportunidades de inversión turística usando visualizaciones de Deck.gl"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "Manuel San Cristóbal", email = "msancristo@fen.uchile.cl"}]

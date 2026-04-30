@@ -1,5 +1,7 @@
 # Flujos Aéreos - Deck.gl Arc Layer Visualization
 
+[![CI](https://github.com/manuelsancristobal/flujos-aereos/actions/workflows/ci.yml/badge.svg)](https://github.com/manuelsancristobal/flujos-aereos/actions/workflows/ci.yml)
+
 ## Contexto
 Este proyecto nació el año 2024, por quizás las razones equivocadas, ya que solo me gustó mucho lo que vi en una galería de Pydeck, por lo que intenté modificarla con datos de la JAC y fue hermoso.
 

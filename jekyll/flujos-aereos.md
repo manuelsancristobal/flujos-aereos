@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "ArcLayer: Flujos Aéreos de Chile"
+title: "Flujos Aéreos de Chile"
 category: Visualización de Datos
 description: Análisis geoespacial interactivo del tráfico aéreo nacional e internacional, incluyendo pasajeros y carga.
 github_url: "https://github.com/manuelsancristobal/flujos-aereos"
