@@ -12,18 +12,23 @@ tech_stack:
   - JavaScript
 ---
 
-## Visualización de Flujos Aéreos
+## Hallazgos Clave en la Dinámica Aérea
 
-Esta herramienta permite explorar la dinámica del transporte aéreo en Chile mediante una interfaz geoespacial interactiva basada en **Deck.gl**. El proyecto integra datos de la Junta de Aeronáutica Civil (JAC) para ofrecer una visión completa tanto de pasajeros como de carga.
+### 1. Resiliencia de la Carga ante Crisis
+Al contrastar las métricas se observa que los flujos de mercancías presentan una estabilidad mayor ante choques externos. Mientras el tráfico de pasajeros muestra fluctuaciones de temporada marcadas y una sensibilidad extrema a crisis, el transporte de carga mantiene una base constante. Esta solidez, analizada en profundidad en la serie histórica del [**Bar Chart Race: Movimiento Aéreo**](/proyectos/barchart-race/), se vincula en especial a las cadenas de suministro hacia Norteamérica y Asia.
 
-### Características Principales
+### 2. El Nodo Santiago (SCL) como Centro de Gravedad
+La visualización geoespacial confirma la posición de Santiago como el eje central del sistema aéreo chileno. Como se aprecia en la perspectiva **Emisiva**, existe una diversificación hacia destinos regionales en Sudamérica. La entrada de aerolíneas *low-cost* ha transformado rutas en el pasado marginales en conexiones de alto volumen.
 
-*   **Multidimensional**: Permite alternar entre métricas de **Pasajeros** y **Carga (Tonelaje)**.
-*   **Doble Perspectiva**: Visualización de flujos **Emisivos** (desde Chile al mundo) y **Receptivos** (llegadas al país).
-*   **Análisis Histórico**: Control deslizante para observar la evolución de las rutas año tras año.
-*   **Tecnología Geoespacial**: Uso de `ArcLayer` para representar trayectorias de círculos máximos, optimizado para grandes volúmenes de datos.
+### 3. Estacionalidad en Flujos Receptivos
+El tráfico **Receptivo** revela una concentración de fuerza en el verano austral (enero-febrero). Las trayectorias desde Europa y Norteamérica muestran una densidad de arco superior en este periodo en la visualización. Este patrón valida la necesidad de infraestructura para gestionar peaks de demanda en nodos estratégicos.
 
-### Visualización Interactiva
+### 4. Rutas Críticas y Puentes Globales
+Como se vio en las trayectorias de círculos máximos del mapa, las rutas hacia Bogotá, Lima y São Paulo son puntos de conexión vitales hacia el resto del mundo. Los vuelos directos a Europa (Madrid, París) actúan de forma estratégica como puentes para el comercio y el turismo de alto valor.
+
+## Visualización de Flujos Interactiva
+
+Esta herramienta utiliza **Deck.gl** para representar la dinámica del transporte aéreo. Como se observa en la capa de `ArcLayer`, el sistema integra datos de la Junta de Aeronáutica Civil (JAC) para ofrecer una visión de pasajeros y carga.
 
 <div class="project-viz-container" style="height: 600px; border-radius: 8px; overflow: hidden; margin: 20px 0; border: 1px solid #ddd;">
     <iframe src="/proyectos/flujos-aereos/viz.html" width="100%" height="100%" frameborder="0"></iframe>
@@ -31,29 +36,14 @@ Esta herramienta permite explorar la dinámica del transporte aéreo en Chile me
 
 [Ver en pantalla completa](/proyectos/flujos-aereos/viz.html){: .btn .btn--primary }
 
-### Impacto y Aplicaciones
-
-Este análisis es fundamental para identificar:
-1.  **Hubs Logísticos**: Destinos con alta carga relativa que funcionan como centros de distribución.
-2.  **Polos Turísticos**: Rutas con alto volumen de pasajeros que conectan con los principales atractivos del país.
-3.  **Conectividad Regional**: La importancia del Aeropuerto de Santiago (SCL) como nodo central y el crecimiento de rutas interregionales.
-
-## Análisis de Dinámicas Aéreas
-
-### 1. Resiliencia de la Carga vs. Volatilidad de Pasajeros
-Al contrastar las métricas de **Pasajeros** y **Carga**, se observa que los flujos de mercancías presentan una mayor estabilidad ante choques externos. Mientras que el tráfico de pasajeros muestra fluctuaciones estacionales marcadas y una sensibilidad extrema a crisis sanitarias o económicas, el transporte de carga mantiene una base constante vinculada a las cadenas de suministro internacionales, especialmente en rutas hacia Norteamérica y Asia.
-
-### 2. Estacionalidad y Flujos Receptivos
-El análisis del tráfico **Receptivo** revela una fuerte concentración en los meses de verano austral (enero-febrero), impulsado por el turismo de larga distancia. Las trayectorias provenientes de Europa y Norteamérica muestran una densidad de arco superior en este período, lo que valida la necesidad de una infraestructura aeroportuaria capaz de gestionar peaks de demanda estacionales en nodos estratégicos como SCL.
-
-### 3. El Nodo Santiago (SCL) como Hub Regional
-La visualización geoespacial confirma la posición de Santiago como el centro de gravedad del sistema aéreo chileno. Sin embargo, la perspectiva **Emisiva** muestra una diversificación creciente hacia destinos regionales en Sudamérica, evidenciando un mercado cada vez más integrado donde las aerolíneas *low-cost* han transformado rutas anteriormente marginales en conexiones de alto volumen.
-
-### 4. Rutas Críticas y Conectividad Global
-Las trayectorias de círculos máximos permiten identificar las "rutas críticas" de conectividad para Chile. La densidad de los flujos hacia Bogotá, Lima y São Paulo subraya su rol como puntos de conexión hacia el resto del mundo, mientras que los vuelos directos a Europa (Madrid, París) actúan como puentes estratégicos para el comercio y el turismo de alto valor.
+### Características de la Herramienta
+*   **Métricas Duales**: Alternancia entre **Pasajeros** y **Carga (Tonelaje)**.
+*   **Perspectiva Doble**: Flujos **Emisivos** y **Receptivos**.
+*   **Control Temporal**: Deslizador para observar la evolución de las rutas año tras año.
+*   **Optimización**: Uso de arcos para trayectorias de gran volumen de datos.
 
 <div class="methodology-box" style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 8px; border-left: 4px solid var(--secondary);">
-    <p style="margin: 0; font-size: 0.95rem;">📌 <strong>Sobre este proyecto:</strong> Esta es la versión rediseñada como aplicación interactiva. Los notebooks originales desarrollados durante la fase exploratoria están disponibles en Google Colab:
-    <a href="https://colab.research.google.com/drive/1cOEHEMJTM6fkYkYqst9__5AVDlQaO9e2" target="_blank" style="color: var(--secondary); font-weight: 600;">Análisis de Atractivos y Destinos</a> y
+    <p style="margin: 0; font-size: 0.95rem;">📌 <strong>Sobre este proyecto:</strong> Esta es la versión rediseñada como aplicación interactiva. Los notebooks en el pasado desarrollados están en Google Colab:
+    <a href="https://colab.research.google.com/drive/1cOEHEMJTM6fkYkYqst9__5AVDlQaO9e2" target="_blank" style="color: var(--secondary); font-weight: 600;">Análisis de Atractivos</a> y
     <a href="https://colab.research.google.com/drive/1woxG5EvWJUKDoNDW8hDxYpKaxP5So1RE" target="_blank" style="color: var(--secondary); font-weight: 600;">Flujo Aéreo Nacional</a>.</p>
 </div>
