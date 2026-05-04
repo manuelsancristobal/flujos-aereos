@@ -4,14 +4,30 @@ let currentData = [];
 let deckgl;
 let currentMetric = 'pasajeros';
 let currentPerspective = 'emisivo';
-let currentYear = 2024;
+let currentYear = null;
 
 const tooltip = document.getElementById('tooltip');
+
+function updateSliderRange() {
+    const years = [...new Set(currentData.map(d => d.year))].sort((a, b) => a - b);
+    if (years.length === 0) return;
+
+    const slider = document.getElementById('year-slider');
+    slider.min = years[0];
+    slider.max = years[years.length - 1];
+
+    if (currentYear === null || currentYear > years[years.length - 1] || currentYear < years[0]) {
+        currentYear = years[years.length - 1];
+    }
+    slider.value = currentYear;
+    document.getElementById('year-label').textContent = currentYear;
+}
 
 async function loadData() {
     const filename = `${currentPerspective}_${currentMetric}.json`;
     const response = await fetch(`assets/data/${filename}`);
     currentData = await response.json();
+    updateSliderRange();
     updateMap();
 }
 
