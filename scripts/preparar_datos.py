@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script de preparacion de datos para Tourism Investment Atlas.
+Script de preparación de datos para Tourism Investment Atlas.
 Lee JAC raw local + descarga aeropuertos y genera CSVs multi-año.
 """
 
@@ -146,7 +146,7 @@ print(f"[OK] flujos_int_receptivo.csv: {len(int_receptivo)} rutas")
 # ============================================================================
 # 4. CLUSTERS TURISTICOS
 # ============================================================================
-print("\n[4] Clusters turisticos (template)...")
+print("\n[4] Clusters turísticos (template)...")
 clusters_template = pd.DataFrame(
     {
         "cluster_id": [1, 2, 3, 4, 5],
@@ -164,7 +164,7 @@ print(f"[OK] clusters_turisticos.csv: {len(clusters_template)} clusters")
 # ============================================================================
 # 5. HISTORICO PASAJEROS (con Nacional + Internacional + Total)
 # ============================================================================
-print("\n[5] Creando historico de pasajeros...")
+print("\n[5] Creando histórico de pasajeros...")
 hist_nac = nac_df.groupby("Año")["Pasajeros"].sum().reset_index()
 hist_nac.columns = ["Año", "Pasajeros_Nacionales"]
 
@@ -195,7 +195,7 @@ else:
 # RESUMEN
 # ============================================================================
 print("\n" + "=" * 60)
-print("[OK] PREPARACION DE DATOS COMPLETADA")
+print("[OK] PREPARACIÓN DE DATOS COMPLETADA")
 print("=" * 60)
 csv_files = list(DATA_DIR.glob("*.csv"))
 print(f"\n[INFO] Archivos generados en {DATA_DIR}:")

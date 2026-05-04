@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Genera datos sinteticos realistas para Tourism Investment Atlas.
+Genera datos sintéticos realistas para Tourism Investment Atlas.
 Basados en estructura real de JAC, aeropuertos Chile, atractivos.
 """
 
@@ -15,7 +15,7 @@ DATA_DIR.mkdir(exist_ok=True)
 np.random.seed(42)
 
 print("=" * 60)
-print("GENERANDO DATOS SINTETICOS PARA TESTING")
+print("GENERANDO DATOS SINTÉTICOS PARA TESTING")
 print("=" * 60)
 
 # ============================================================================
@@ -30,7 +30,7 @@ aeropuertos_chile = pd.DataFrame(
             "Punta Arenas",
             "Puerto Montt",
             "Calama",
-            "Concepcion",
+            "Concepción",
             "Arica",
             "La Serena",
             "Isla Pascua",
@@ -54,7 +54,7 @@ aeropuertos_global = pd.DataFrame(
         "nombre": [
             "Santiago",
             "Sao Paulo",
-            "Bogota",
+            "Bogotá",
             "Lima",
             "New York",
             "Madrid",
@@ -196,9 +196,9 @@ df_rec.to_csv(DATA_DIR / "flujos_int_receptivo.csv", index=False)
 print(f"[OK] {len(df_rec)} rutas internacionales (receptivas)")
 
 # ============================================================================
-# 6. CLUSTERS TURISTICOS (actualizado con coordenadas reales)
+# 6. CLUSTERS TURÍSTICOS (actualizado con coordenadas reales)
 # ============================================================================
-print("\n[6] Generando clusters turisticos...")
+print("\n[6] Generando clusters turísticos...")
 clusters = pd.DataFrame(
     {
         "cluster_id": [1, 2, 3, 4, 5, 6],
@@ -206,7 +206,7 @@ clusters = pd.DataFrame(
             "Torres del Paine",
             "San Pedro de Atacama",
             "Lagos Patagonia",
-            "Chiloe",
+            "Chiloé",
             "Elqui - Coquimbo",
             "Litoral Central",
         ],
@@ -218,12 +218,12 @@ clusters = pd.DataFrame(
     }
 )
 clusters.to_csv(DATA_DIR / "clusters_turisticos.csv", index=False)
-print(f"[OK] {len(clusters)} clusters turisticos")
+print(f"[OK] {len(clusters)} clusters turísticos")
 
 # ============================================================================
-# 7. HISTORICO PASAJEROS (2019-2024, excluyendo COVID)
+# 7. HISTÓRICO PASAJEROS (2019-2024, excluyendo COVID)
 # ============================================================================
-print("\n[7] Generando historico pasajeros...")
+print("\n[7] Generando histórico pasajeros...")
 años = [2019, 2020, 2021, 2022, 2023, 2024]
 pasajeros_base = [850000, 450000, 320000, 680000, 780000, 900000]
 
@@ -236,13 +236,13 @@ historico = pd.DataFrame(
     }
 )
 historico.to_csv(DATA_DIR / "historico_pasajeros.csv", index=False)
-print(f"[OK] {len(historico)} años de historico")
+print(f"[OK] {len(historico)} años de histórico")
 
 # ============================================================================
 # RESUMEN
 # ============================================================================
 print("\n" + "=" * 60)
-print("[OK] DATOS SINTETICOS GENERADOS")
+print("[OK] DATOS SINTÉTICOS GENERADOS")
 print("=" * 60)
 csv_files = sorted(list(DATA_DIR.glob("*.csv")))
 print(f"\n[INFO] Archivos en {DATA_DIR}:")
@@ -250,7 +250,7 @@ for f in csv_files:
     size = f.stat().st_size / 1024
     print(f"  [OK] {f.name:35} ({size:7.1f} KB)")
 
-print("\n[TODO] Proximos pasos:")
+print("\n[TODO] Próximos pasos:")
 print("  1. Adaptar clusters_turisticos.csv con datos reales")
-print("  2. Reemplazar flujos_*.csv con datos JAC cuando esten disponibles")
+print("  2. Reemplazar flujos_*.csv con datos JAC cuando estén disponibles")
 print("  3. Crear repo tourism-investment-atlas")
