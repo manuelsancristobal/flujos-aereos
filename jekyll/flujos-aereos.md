@@ -19,7 +19,7 @@ Bienvenido a la exploración interactiva de los cielos chilenos. Esta herramient
 Esta herramienta utiliza **Deck.gl** para representar la dinámica del transporte aéreo. Como se observa en la capa de `ArcLayer`, el sistema integra datos de la Junta de Aeronáutica Civil (JAC) para ofrecer una visión de pasajeros y carga.
 
 <div class="project-viz-container" style="height: 600px; border-radius: 8px; overflow: hidden; margin: 20px 0; border: 1px solid #ddd;">
-    <iframe src="/proyectos/flujos-aereos/viz.html" width="100%" height="100%" frameborder="0"></iframe>
+    <iframe src="/proyectos/flujos-aereos/viz.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
 </div>
 
 [Ver en pantalla completa](/proyectos/flujos-aereos/viz.html){: .btn .btn--primary }
