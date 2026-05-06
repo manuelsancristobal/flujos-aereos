@@ -9,11 +9,11 @@ from src.config import COL_CARGA, COL_PASAJEROS, PROCESSED_DATA_DIR
 logger = logging.getLogger(__name__)
 
 
-def load_to_json(df: pd.DataFrame, perspective: str, metric: str) -> Path:
+def load_to_json(df: pd.DataFrame, perspective: str, metric: str, ambito: str = "internacional") -> Path:
     """Guarda el DataFrame procesado como JSON en el directorio de assets."""
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    filename = f"{perspective}_{metric}.json"
+    filename = f"nacional_{perspective}_{metric}.json" if ambito == "nacional" else f"{perspective}_{metric}.json"
     filepath = PROCESSED_DATA_DIR / filename
 
     col_metric = COL_PASAJEROS if metric == "pasajeros" else COL_CARGA

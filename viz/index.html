@@ -13,10 +13,18 @@
 <body>
     <div id="container">
         <div id="map"></div>
-        
+
         <div class="controls">
-            <h1>Flujos Aéreos Internacionales</h1>
-            
+            <h1>Flujos Aéreos Chile</h1>
+
+            <div class="control-group">
+                <label>Ámbito</label>
+                <div class="toggle-group" id="scope-toggle">
+                    <button class="active" data-value="internacional">Internacional</button>
+                    <button data-value="nacional">Nacional</button>
+                </div>
+            </div>
+
             <div class="control-group">
                 <label>Tipo de Tráfico</label>
                 <div class="toggle-group" id="metric-toggle">
@@ -24,7 +32,7 @@
                     <button data-value="carga">Carga</button>
                 </div>
             </div>
-            
+
             <div class="control-group">
                 <label>Perspectiva</label>
                 <div class="toggle-group" id="perspective-toggle">
@@ -32,7 +40,7 @@
                     <button data-value="receptivo">Receptivo</button>
                 </div>
             </div>
-            
+
             <div class="control-group">
                 <label>Año: <span id="year-label">-</span></label>
                 <input type="range" id="year-slider" min="0" max="1" value="0" step="1">
@@ -43,7 +51,7 @@
                 <p>Total: <span id="total-value">-</span></p>
             </div>
         </div>
-        
+
         <div id="tooltip"></div>
     </div>
 

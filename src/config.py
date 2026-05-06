@@ -70,6 +70,25 @@ HISTORICO_PASAJEROS = DATA_EXTERNAL / "historico_pasajeros.csv"
 PERSPECTIVAS = ["emisivo", "receptivo"]
 TIPOS_TRAFICO = ["pasajeros", "carga"]
 
+AMBITOS = ["nacional", "internacional"]
+
+PERSPECTIVAS_POR_AMBITO = {
+    "nacional": ["salidas", "llegadas"],
+    "internacional": ["emisivo", "receptivo"],
+}
+
+SENTIDO_MAP = {
+    "emisivo": "SALEN",
+    "receptivo": "LLEGAN",
+    "salidas": "SALEN",
+    "llegadas": "LLEGAN",
+}
+
+AMBITO_NAC_MAP = {
+    "nacional": "NACIONAL",
+    "internacional": "INTERNACIONAL",
+}
+
 # ── Mapeo de Columnas JAC ────────────────────────────
 COL_AÑO = "Año"
 COL_ORIGEN = "ORIG_1"

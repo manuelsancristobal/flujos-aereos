@@ -4,9 +4,30 @@ let currentData = [];
 let deckgl;
 let currentMetric = 'pasajeros';
 let currentPerspective = 'emisivo';
+let currentScope = 'internacional';
 let currentYear = null;
 
 const tooltip = document.getElementById('tooltip');
+
+const PERSPECTIVE_LABELS = {
+    internacional: {first: 'Emisivo', firstValue: 'emisivo', second: 'Receptivo', secondValue: 'receptivo'},
+    nacional: {first: 'Salidas', firstValue: 'salidas', second: 'Llegadas', secondValue: 'llegadas'},
+};
+
+const VIEW_STATES = {
+    internacional: {longitude: -70.7, latitude: -33.4, zoom: 3, pitch: 45, bearing: 0},
+    nacional: {longitude: -70.7, latitude: -36.0, zoom: 5, pitch: 45, bearing: 0},
+};
+
+function updatePerspectiveButtons() {
+    const labels = PERSPECTIVE_LABELS[currentScope];
+    const container = document.getElementById('perspective-toggle');
+    container.innerHTML = `
+        <button class="active" data-value="${labels.firstValue}">${labels.first}</button>
+        <button data-value="${labels.secondValue}">${labels.second}</button>
+    `;
+    currentPerspective = labels.firstValue;
+}
 
 function updateSliderRange() {
     const years = [...new Set(currentData.map(d => d.year))].sort((a, b) => a - b);
@@ -24,21 +45,42 @@ function updateSliderRange() {
 }
 
 async function loadData() {
-    const filename = `${currentPerspective}_${currentMetric}.json`;
-    const response = await fetch(`assets/data/${filename}`);
-    currentData = await response.json();
+    const prefix = currentScope === 'nacional' ? 'nacional_' : '';
+    const filename = `${prefix}${currentPerspective}_${currentMetric}.json`;
+    try {
+        const response = await fetch(`assets/data/${filename}`);
+        currentData = await response.json();
+    } catch {
+        currentData = [];
+    }
     updateSliderRange();
     updateMap();
 }
 
+function getArcColors() {
+    if (currentScope === 'nacional') {
+        const isSalidas = currentPerspective === 'salidas';
+        return {
+            source: isSalidas ? [0, 200, 150] : [100, 50, 200],
+            target: isSalidas ? [100, 50, 200] : [0, 200, 150],
+        };
+    }
+    const isEmisivo = currentPerspective === 'emisivo';
+    return {
+        source: isEmisivo ? [0, 128, 255] : [255, 128, 0],
+        target: isEmisivo ? [255, 128, 0] : [0, 128, 255],
+    };
+}
+
 function updateMap() {
     const filteredData = currentData.filter(d => d.year === currentYear);
-    
-    // Calcular estadísticas
+
     document.getElementById('route-count').textContent = filteredData.length;
     const total = filteredData.reduce((acc, d) => acc + d.value, 0);
     const formatter = new Intl.NumberFormat('es-CL');
     document.getElementById('total-value').textContent = formatter.format(Math.round(total)) + (currentMetric === 'pasajeros' ? ' pax' : ' ton');
+
+    const colors = getArcColors();
 
     const layer = new ArcLayer({
         id: 'arc-layer',
@@ -47,8 +89,8 @@ function updateMap() {
         getWidth: d => Math.log10(d.value + 1) * 2,
         getSourcePosition: d => d.source,
         getTargetPosition: d => d.target,
-        getSourceColor: d => currentPerspective === 'emisivo' ? [0, 128, 255] : [255, 128, 0],
-        getTargetColor: d => currentPerspective === 'emisivo' ? [255, 128, 0] : [0, 128, 255],
+        getSourceColor: colors.source,
+        getTargetColor: colors.target,
         onHover: info => {
             if (info.object) {
                 tooltip.style.display = 'block';
@@ -64,26 +106,29 @@ function updateMap() {
         }
     });
 
-    deckgl.setProps({
-        layers: [layer]
-    });
+    deckgl.setProps({layers: [layer]});
 }
 
 // Inicializar mapa
 deckgl = new DeckGL({
     container: 'map',
     mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-    initialViewState: {
-        longitude: -70.7,
-        latitude: -33.4,
-        zoom: 3,
-        pitch: 45,
-        bearing: 0
-    },
+    initialViewState: VIEW_STATES.internacional,
     controller: true
 });
 
 // Event Listeners
+document.getElementById('scope-toggle').addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') {
+        document.querySelectorAll('#scope-toggle button').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentScope = e.target.dataset.value;
+        updatePerspectiveButtons();
+        deckgl.setProps({initialViewState: {...VIEW_STATES[currentScope], transitionDuration: 1000}});
+        loadData();
+    }
+});
+
 document.getElementById('metric-toggle').addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
         document.querySelectorAll('#metric-toggle button').forEach(b => b.classList.remove('active'));
